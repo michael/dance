@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'/>
+  <title>Dance.js - Barchart</title>
+  <link rel='stylesheet' href='barchart.css'>
+  <script src='../../lib/underscore.js'></script>
+  <script src='../../lib/data.js'></script>
+  <script src='../../lib/jquery.js'></script>
+  <script src='../../dance.js'></script>
+
+  <!-- Dance Performers -->
+  <script src="barchart.js"></script>
+  <script>
+
+    var countries_data = {
+      "properties": {
+        "name": {"name": "Country Name",
+          "type": "string", "unique": true },
+        "official_language": {"name": "Official Language",
+           "type": "string", "unique": true },
+        "population": { "name": "Population",
+           "type": "number", "unique": true },
+        "gdp": { "name": "GDP per capita",
+          "type": "number", "unique": true }
+      },
+      "items": {
+        "at": {
+          "name": "Austria",
+          "official_language": "German",
+          "population": 8.3,
+          "gdp": 39.761
+        },
+        "de": {
+          "name": "Germany",
+          "official_language": "German",
+          "population": 82,
+          "gdp": 46.860
+        },
+        "usa": {
+          "name": "United States of America",
+          "official_language": "English",
+          "population": 311,
+          "gdp": 36.081
+        }
+      }
+    };
+    
+    $(function() {
+      var countries = new Data.Collection(countries_data);
+
+      var barchart = new Barchart({ items: countries });
+      barchart.update("gdp");
+
+      // Update
+      function update() {
+        property = $('#property').val();
+        barchart.update(property);
+      }
+      
+      $('#property').change(update);
+    });
+
+  </script>
+
+</head>
+<body>
+  <div id='container'>
+    <select id="property">
+      <option value="gdp">GDP</option>
+      <option value="population">Population</option>
+    </select>
+    <div id='canvas'></div>
+  </div>
+</body>
+</html>
