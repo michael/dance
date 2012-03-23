@@ -344,9 +344,14 @@
     this._configure(options || {});
     this._ensureElement();
 
-    this.items = new Data.Hash();
-    this.previousItems = new Data.Hash();
+    this.data = {};
+    this.previousData = {};
 
+    _.each(this.collections, _.bind(function(collection, key) {
+      this.data[key] = new Data.Hash();
+      this.previousData[key] = new Data.Hash();
+    }, this));
+    
     this.initialize.apply(this, arguments);
     this.delegateEvents();
   };
@@ -375,10 +380,13 @@
 
     // Triggered when data has changed
     refresh: function() {
-      this.transitions.enter(this.items.difference(this.previousItems));
-      this.transitions.update(this.previousItems.intersect(this.items));
-      this.transitions.exit(this.previousItems.difference(this.items));
-      this.previousItems = this.items;
+
+      _.each(this.collections, _.bind(function(collection, key) {
+        collection.enter.call(this, this.data[key].difference(this.previousData[key]));
+        collection.update.call(this, this.previousData[key].intersect(this.data[key]));
+        collection.exit.call(this, this.previousData[key].difference(this.data[key]));
+        this.previousData[key] = this.data[key];
+      }, this));
     },
 
     // **render** is the core function that your view should override, in order
