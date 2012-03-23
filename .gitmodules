@@ -1,0 +1,3 @@
+[submodule "examples/barchart"]
+	path = examples/barchart
+	url = git@gist.github.com:2172216.git
