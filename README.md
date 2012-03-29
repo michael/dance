@@ -1,4 +1,4 @@
-Synopsis
+Dance.js
 ========
 
 [Dance.js](http://github.com/michael/dance) is a simple data-driven
@@ -33,8 +33,23 @@ Some might be unbeatable in dancing the classic waltz (speaking of
 classical HTML Views), while others shine when it comes to modern
 artistic dancing (aka data visualizations).
 
+    var Barchart = Backbone.View.extend({
+
+      events: {
+        "click .bar":          "open",
+      },
+
+      render: function() {
+        ...
+      }
+
+    });
+
+Please use the [Backbone.js API
+docs](http://documentcloud.github.com/backbone/#View).
+
 Dance.Instructor
-===========
+================
 
 If your dance performance involves many performers, it's most likely
 that you need a `Dance.Instructor`, coordinating your dance.

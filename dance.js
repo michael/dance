@@ -380,7 +380,6 @@
 
     // Triggered when data has changed
     refresh: function() {
-
       _.each(this.collections, _.bind(function(collection, key) {
         collection.enter.call(this, this.data[key].difference(this.previousData[key]));
         collection.update.call(this, this.previousData[key].intersect(this.data[key]));
