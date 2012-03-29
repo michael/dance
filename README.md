@@ -126,4 +126,4 @@ There are a couple of first-time dances to start with. Check them out.
 -   [The Barchart Dance](http://bl.ocks.org/2172216)
 
 ![The Barchart
-Dance](http://substance-assets.s3.amazonaws.com/69/6408cd089e6a780b75459fe232b7cf/barchart-dance.png)
+Dance](http://substance-assets.s3.amazonaws.com/68/6ae5ed1421157b81058d88f4c88f9c/bars.png)
