@@ -33,16 +33,16 @@ Some might be unbeatable in dancing the classic waltz (speaking of
 classical HTML Views), while others shine when it comes to modern
 artistic dancing (aka data visualizations).
 
-    var Barchart = Backbone.View.extend({
+    var Barchart = Dance.Performer.extend({
 
       events: {
-        "click .bar":          "open",
+        "click .bar": "open",
       },
 
       render: function() {
         ...
       }
-
+      
     });
 
 Please use the [Backbone.js API
