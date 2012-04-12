@@ -33,17 +33,19 @@ Some might be unbeatable in dancing the classic waltz (speaking of
 classical HTML Views), while others shine when it comes to modern
 artistic dancing (aka data visualizations).
 
-    var Barchart = Backbone.View.extend({
+```js
+var Barchart = Dance.Performer.extend({
 
-      events: {
-        "click .bar":          "open",
-      },
+  events: {
+    "click .bar": "open",
+  },
 
-      render: function() {
-        ...
-      }
-
-    });
+  render: function() {
+    ...
+  }
+  
+});
+```
 
 Please use the [Backbone.js API
 docs](http://documentcloud.github.com/backbone/#View).
@@ -54,25 +56,29 @@ Dance.Instructor
 If your dance performance involves many performers, it's most likely
 that you need a `Dance.Instructor`, coordinating your dance.
 
-    var Instructor = Dance.Instructor.extend({
-      routes: {
-        "methodology":              "methodology",          // #methodology
-        "power_consumption/:state": "powerConsumption",     // #power_consumption/dc
-      },
+```js
+var Instructor = Dance.Instructor.extend({
+  routes: {
+    "methodology":              "methodology",          // #methodology
+    "power_consumption/:state": "powerConsumption",     // #power_consumption/dc
+  },
 
-      bars: function() {
-        ...
-      },
+  bars: function() {
+    ...
+  },
 
-      search: function(state) {
-        ...
-      }
-    });
+  search: function(state) {
+    ...
+  }
+});
+```
 
 Once you have setup your instructor you are ready to perform that dance.
 
-    window.instructor = new Instructor({});
-    Dance.perform(); // Starts responding to routes
+```js
+window.instructor = new Instructor({});
+Dance.perform(); // Starts responding to routes
+```
 
 Enter / Exit / Update
 ---------------------
@@ -83,37 +89,39 @@ cases here: The updating nodes to modify, the entering nodes to add, and
 the exiting nodes to remove. An example implementation for an animated
 Barchart could look like this:
 
-    var Barchart = Dance.Performer.extend({
-      collections: {
-        "items": {
-          enter: function(items) {
-            items.each(function(item) {
-              var bar = $('<div class="bar" id="'+item.html_id+'"></div>')
-                    .css('left', item.pos.x)
-                    .css('bottom', 0)
-                    .css('width', item.pos.dx)
-                    .css('height', item.pos.dy)
-                    .appendTo($('#canvas'));
-            });
-          },
-      
-          update: function(items) {
-            items.each(function(item) {
-             $('#'+item.html_id)
-               .css('left', item.pos.x)
-               .css('width', item.pos.dx)
-               .css('height', item.pos.dy)
-            });
-          },
-      
-          exit: function(items) {
-            items.each(function(i, key) { $('#'+key).remove(); });
-          }
-        }
+```js
+var Barchart = Dance.Performer.extend({
+  collections: {
+    "items": {
+      enter: function(items) {
+        items.each(function(item) {
+          var bar = $('<div class="bar" id="'+item.html_id+'"></div>')
+                .css('left', item.pos.x)
+                .css('bottom', 0)
+                .css('width', item.pos.dx)
+                .css('height', item.pos.dy)
+                .appendTo($('#canvas'));
+        });
       },
-      
-      ...
+  
+      update: function(items) {
+        items.each(function(item) {
+         $('#'+item.html_id)
+           .css('left', item.pos.x)
+           .css('width', item.pos.dx)
+           .css('height', item.pos.dy)
+        });
+      },
+  
+      exit: function(items) {
+        items.each(function(i, key) { $('#'+key).remove(); });
+      }
     }
+  },
+  
+  ...
+}
+```
 
 You can specify transformations for an arbitrary number of collections
 your visualization is using.
@@ -126,4 +134,4 @@ There are a couple of first-time dances to start with. Check them out.
 -   [The Barchart Dance](http://bl.ocks.org/2172216)
 
 ![The Barchart
-Dance](http://substance-assets.s3.amazonaws.com/69/6408cd089e6a780b75459fe232b7cf/barchart-dance.png)
+Dance](http://substance-assets.s3.amazonaws.com/68/6ae5ed1421157b81058d88f4c88f9c/bars.png)
