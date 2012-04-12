@@ -346,11 +346,6 @@
 
     this.data = {};
     this.previousData = {};
-
-    _.each(this.collections, _.bind(function(collection, key) {
-      this.data[key] = new Data.Hash();
-      this.previousData[key] = new Data.Hash();
-    }, this));
     
     this.initialize.apply(this, arguments);
     this.delegateEvents();
@@ -381,9 +376,13 @@
     // Triggered when data has changed
     refresh: function() {
       _.each(this.collections, _.bind(function(collection, key) {
-        collection.enter.call(this, this.data[key].difference(this.previousData[key]));
-        collection.update.call(this, this.previousData[key].intersect(this.data[key]));
-        collection.exit.call(this, this.previousData[key].difference(this.data[key]));
+        if (this.previousData[key]) {
+          collection.enter.call(this, this.data[key].difference(this.previousData[key]));
+          collection.update.call(this, this.previousData[key].intersect(this.data[key]));
+          collection.exit.call(this, this.previousData[key].difference(this.data[key]));
+        } else {
+          collection.enter.call(this, this.data[key]);
+        }
         this.previousData[key] = this.data[key];
       }, this));
     },
