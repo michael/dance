@@ -19,10 +19,6 @@
   // restored later on, if `noConflict` is used.
   var previousDance = root.Dance;
 
-  // Create a local reference to slice/splice.
-  var slice = Array.prototype.slice;
-  var splice = Array.prototype.splice;
-
   // The top-level namespace. All public Dance classes and modules will
   // be attached to this. Exported for both CommonJS and the browser.
   var Dance;
@@ -57,7 +53,6 @@
     root.Dance = previousDance;
     return this;
   };
-
 
   // Dance.Instructor
   // -------------------
