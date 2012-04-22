@@ -1,3 +1,6 @@
 [submodule "examples/barchart"]
 	path = examples/barchart
 	url = git@gist.github.com:2172216.git
+[submodule "examples/scatterplot"]
+	path = examples/scatterplot
+	url = git@gist.github.com:2458819.git
