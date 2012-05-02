@@ -378,7 +378,8 @@
         } else {
           collection.enter.call(this, this.data[key]);
         }
-        this.previousData[key] = this.data[key];
+        // Clone collection
+        this.previousData[key] = Data.Collection.create(this.data[key].type, this.data[key].objects);
       }, this));
     },
 
