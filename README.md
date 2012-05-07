@@ -77,7 +77,7 @@ Once you have setup your instructor you are ready to perform that dance.
 
 ```js
 window.instructor = new Instructor({});
-Dance.perform(); // Starts responding to routes
+Dance.performance.start(); // Starts responding to routes
 ```
 
 Enter / Exit / Update
@@ -129,7 +129,8 @@ your visualization is using.
 First-time dances
 =================
 
-There are a couple of first-time dances to start with. Check them out.
+A good way to start is probably reading trough the tutorial [Dancing with Data](http://quasipartikel.at/2012/04/25/dancing-with-data/) 
+plus checking out a couple of first-time dances:
 
 -   [The Barchart Dance](http://bl.ocks.org/2172216)
 -   [The Scatterplot Dance](http://bl.ocks.org/2458819)
