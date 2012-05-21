@@ -86,24 +86,24 @@
     //     });
     //
     route: function(route, name, callback) {
-      Dance.history || (Dance.history = new History);
+      Dance.performance || (Dance.performance = new Performance);
       if (!_.isRegExp(route)) route = this._routeToRegExp(route);
       if (!callback) callback = this[name];
-      Dance.history.route(route, _.bind(function(fragment) {
+      Dance.performance.route(route, _.bind(function(fragment) {
         var args = this._extractParameters(route, fragment);
         callback && callback.apply(this, args);
         this.trigger.apply(this, ['route:' + name].concat(args));
-        Dance.history.trigger('route', this, name, args);
+        Dance.performance.trigger('route', this, name, args);
       }, this));
       return this;
     },
 
-    // Simple proxy to `Dance.history` to save a fragment into the history.
+    // Simple proxy to `Dance.performance` to save a fragment into the history.
     navigate: function(fragment, options) {
-      Dance.history.navigate(fragment, options);
+      Dance.performance.navigate(fragment, options);
     },
 
-    // Bind all defined routes to `Dance.history`. We have to reverse the
+    // Bind all defined routes to `Dance.performance`. We have to reverse the
     // order of the routes here to support behavior where the most general
     // routes can be defined at the bottom of the route map.
     _bindRoutes: function() {
@@ -134,12 +134,12 @@
 
   });
 
-  // Dance.History
+  // Dance.Performance
   // ----------------
 
   // Handles cross-browser history management, based on URL fragments. If the
   // browser does not support `onhashchange`, falls back to polling.
-  var History = Dance.History = function() {
+  var Performance = Dance.Performance = function() {
     this.handlers = [];
     _.bindAll(this, 'checkUrl');
   };
@@ -151,10 +151,10 @@
   var isExplorer = /msie [\w.]+/;
 
   // Has the history handling already been started?
-  History.started = false;
+  Performance.started = false;
 
-  // Set up all inheritable **Dance.History** properties and methods.
-  _.extend(History.prototype, _.Events, {
+  // Set up all inheritable **Dance.Performance** properties and methods.
+  _.extend(Performance.prototype, _.Events, {
 
     // The default interval to poll for hash changes, if necessary, is
     // twenty times a second.
@@ -187,8 +187,8 @@
     // Start the hash change handling, returning `true` if the current URL matches
     // an existing route, and `false` otherwise.
     start: function(options) {
-      if (History.started) throw new Error("Dance.history has already been started");
-      History.started = true;
+      if (Performance.started) throw new Error("Dance.Performance has already been started");
+      Performance.started = true;
 
       // Figure out the initial configuration. Do we need an iframe?
       // Is pushState desired ... is it available?
@@ -241,12 +241,12 @@
       }
     },
 
-    // Disable Dance.history, perhaps temporarily. Not useful in a real app,
+    // Disable Dance.performance, perhaps temporarily. Not useful in a real app,
     // but possibly useful for unit testing Instructors.
     stop: function() {
       $(window).unbind('popstate', this.checkUrl).unbind('hashchange', this.checkUrl);
       clearInterval(this._checkUrlInterval);
-      History.started = false;
+      Performance.started = false;
     },
 
     // Add a route to be tested when the fragment changes. Routes added later
@@ -287,7 +287,7 @@
     // route callback be fired (not usually desirable), or `replace: true`, if
     // you wish to modify the current URL without adding an entry to the history.
     navigate: function(fragment, options) {
-      if (!History.started) return false;
+      if (!Performance.started) return false;
       if (!options || options === true) options = {trigger: options};
       var frag = (fragment || '').replace(routeStripper, '');
       if (this.fragment == frag) return;
