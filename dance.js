@@ -1,5 +1,4 @@
-//     Dance.js 0.1.0
-
+//     Dance.js 0.1.0 (based on Backbone.s 0.9.2)
 //     (c) 2012 Michael Aufreiter, Development Seed.
 //     Dance may be freely distributed under the MIT license.
 //     Large parts of Dance.js are borrowed from Backbone.js
