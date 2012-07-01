@@ -50,14 +50,14 @@ var Barchart = Dance.Performer.extend({
 Please use the [Backbone.js API
 docs](http://documentcloud.github.com/backbone/#View).
 
-Dance.Instructor
+Dance.Choreographer
 ================
 
 If your dance performance involves many performers, it's most likely
-that you need a `Dance.Instructor`, coordinating your dance.
+that you need a `Dance.Choreographer`, coordinating your dance.
 
 ```js
-var Instructor = Dance.Instructor.extend({
+var Choreographer = Dance.Choreographer.extend({
   routes: {
     "methodology":              "methodology",          // #methodology
     "power_consumption/:state": "powerConsumption",     // #power_consumption/dc
@@ -73,10 +73,10 @@ var Instructor = Dance.Instructor.extend({
 });
 ```
 
-Once you have setup your instructor you are ready to perform that dance.
+Once you have setup your choreographer you are ready to perform that dance.
 
 ```js
-window.instructor = new Instructor({});
+window.choreographer = new Choreographer({});
 Dance.performance.start(); // Starts responding to routes
 ```
 

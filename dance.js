@@ -28,7 +28,7 @@
   }
 
   // Current version of the library. Keep in sync with `package.json`.
-  Dance.VERSION = '0.1.0';
+  Dance.VERSION = '0.1.1';
 
   // Require Underscore, if we're on the server, and it's not already present.
   var _ = root._;
@@ -53,12 +53,12 @@
     return this;
   };
 
-  // Dance.Instructor
+  // Dance.Choreographer
   // -------------------
 
-  // Instructors map faux-URLs to actions, and fire events when routes are
+  // Choreographers map faux-URLs to actions, and fire events when routes are
   // matched. Creating a new one sets its `routes` hash, if not set statically.
-  var Instructor = Dance.Instructor = function(options) {
+  var Choreographer = Dance.Choreographer = function(options) {
     options || (options = {});
     if (options.routes) this.routes = options.routes;
     this._bindRoutes();
@@ -71,8 +71,8 @@
   var splatParam    = /\*\w+/g;
   var escapeRegExp  = /[-[\]{}()+?.,\\^$|#\s]/g;
 
-  // Set up all inheritable **Dance.Instructor** properties and methods.
-  _.extend(Instructor.prototype, _.Events, {
+  // Set up all inheritable **Dance.Choreographer** properties and methods.
+  _.extend(Choreographer.prototype, _.Events, {
 
     // Initialize is an empty function by default. Override it with your own
     // initialization logic.
@@ -241,7 +241,7 @@
     },
 
     // Disable Dance.performance, perhaps temporarily. Not useful in a real app,
-    // but possibly useful for unit testing Instructors.
+    // but possibly useful for unit testing Choreographers.
     stop: function() {
       $(window).unbind('popstate', this.checkUrl).unbind('hashchange', this.checkUrl);
       clearInterval(this._checkUrlInterval);
@@ -496,7 +496,7 @@
   };
 
   // Set up inheritance for the model, collection, and view.
-  Instructor.extend = Performer.extend = extend;
+  Choreographer.extend = Performer.extend = extend;
 
 
 
